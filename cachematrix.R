@@ -49,8 +49,8 @@ cacheSolve <- function(x, ...) {
 	## Return a matrix that is the inverse of 'x'
   matInv <- x$getInverse()
   
-  	## Test whether or not matInv is identical to the initial state.
-	## If not, retrieve the inverse from the cache and return it directly.
+  	## Test whether or not matInv is identical to its initial state.
+	## If not, retrieve the inverse from the cache and return it.
   if(!identical(matInv, matrix())) {
     message("getting cached inverse")
     return(matInv)
