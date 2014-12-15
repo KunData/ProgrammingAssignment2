@@ -17,7 +17,7 @@
 ##	[2,] -0.15829528  1.111111e-01 -0.04566210
 ##	[3,]  0.18873668 -5.555556e-02  0.01598174
 ## 5. call cacheSolve again with the same 'x' to test the cache functionality.
-##  a message of 'getting cached inverse' and the same inverse will be observed. 
+##    a message of 'getting cached inverse' and the same inverse will be observed. 
 
 ## Note:
 ## if matrix 'x' is NOT invertible, install Package "MASS" from CRAN 
