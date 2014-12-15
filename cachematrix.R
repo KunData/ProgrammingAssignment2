@@ -11,11 +11,13 @@
 ## 2. generate a test matrix with 
 ##	mTest = matrix(c(1, 5, 10, 8, 19, 20, 16, 7, 14), nrow = 3, ncol = 3, byrow = TRUE)
 ## 3. create a special 'matrix' object with x <- makeCacheMatrix(mTest)
-## 4. call cacheSolve(x) to return the inverse of x (actually mTest) as:
+## 4. call cacheSolve(x) to compute and return the inverse of 'x' for the first time:
 ##		   [,1]          [,2]        [,3]
 ##	[1,] -0.09589041 -6.938894e-18  0.06849315
 ##	[2,] -0.15829528  1.111111e-01 -0.04566210
 ##	[3,]  0.18873668 -5.555556e-02  0.01598174
+## 5. call cacheSolve again with the same 'x' to test the cache functionality.
+##  a message of 'getting cached inverse' and the same inverse will be observed. 
 
 ## Note:
 ## if matrix 'x' is NOT invertible, install Package "MASS" from CRAN 
@@ -27,7 +29,7 @@
 
 makeCacheMatrix <- function(x = matrix()) {
 	## Create a special 'matrix' object that can cache its inverse
-  matInv <- matrix()
+  matInv <- matrix()	## Initialize 'matInv' as a 1 by 1 matrix with default value NA
   set <- function(y) {
     x <<- y
     matInv <<- matrix()
@@ -46,7 +48,10 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
 	## Return a matrix that is the inverse of 'x'
   matInv <- x$getInverse()
-  if(!is.na(matInv)) {
+  
+  	## Test whether or not matInv is identical to the initial state.
+	## If not, retrieve the inverse from the cache and return it directly.
+  if(!identical(matInv, matrix())) {
     message("getting cached inverse")
     return(matInv)
   }
